@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -24,6 +27,8 @@ import com.sojson.user.service.UUserService;
 
 @Service
 public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUserService {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	/***
 	 * 用户手动操作Session
 	 * */
@@ -42,7 +47,9 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 	@Override
 	public UUser insert(UUser entity) {
 		userMapper.insert(entity);
+		logger.info("打个日志测试 gittag ======");
 		return entity;
+
 	}
 
 	@Override
@@ -197,9 +204,8 @@ public class UUserServiceImpl extends BaseMybatisDao<UUserMapper> implements UUs
 			resultMap.put("message", "操作失败，请重试！");
 		}
 		return resultMap;
-	
 	}
-	
-	
+
+
 	
 }
